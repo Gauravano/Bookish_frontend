@@ -6,16 +6,22 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {ListingService} from './listing.service';
 import {HttpClientModule} from '@angular/common/http';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ListingService],
   bootstrap: [AppComponent]
