@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListingService } from '../listing.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-listing',
@@ -8,9 +10,21 @@ import { ListingService } from '../listing.service';
 })
 export class ListingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private location: Location,
+              private listingService: ListingService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getListing();
   }
 
+  getListing() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.listingService.getListing(id).subscribe((data) => {
+      console.log('Listing: ', data);
+    }, (err) => {
+
+    });
+
+  }
 }

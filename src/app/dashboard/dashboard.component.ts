@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListingService } from '../listing.service';
 import {Listing} from '../Listing';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import {Listing} from '../Listing';
 })
 export class DashboardComponent implements OnInit {
   listings: Listing[] = [];
-  constructor(private listingService: ListingService) { }
+  constructor(private listingService: ListingService, private router: Router) { }
 
   ngOnInit() {
     this.listingService.getListings().subscribe((listings: Listing[]) => {
@@ -18,6 +19,11 @@ export class DashboardComponent implements OnInit {
     });
 
 
+  }
+
+  showListing(id) {
+    console.log('Show listing init: ', id);
+    this.router.navigate([`/listings/${id}`]);
   }
 
 }

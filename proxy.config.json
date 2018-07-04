@@ -23,6 +23,11 @@
     "target": "http://localhost:4000",
     "secure":false,
     "changeOrigin":true
+  },
+  "/api/listings/:id":{
+    "target": "http://localhost:4000",
+    "secure":false,
+    "changeOrigin":true
   }
 
 }

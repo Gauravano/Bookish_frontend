@@ -5,12 +5,14 @@ import {AppComponent} from './app.component';
 import {SignupComponent} from './signup/signup.component';
 import {LoginComponent} from './login/login.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
+import {ListingComponent} from './listing/listing.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'wishlist', component: WishlistComponent }
+  { path: 'wishlist', component: WishlistComponent },
+  { path: 'listings/:id', component: ListingComponent }
 ];
 
 @NgModule({

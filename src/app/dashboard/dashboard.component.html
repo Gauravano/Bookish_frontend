@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="row">
-    <button class="col btn btn-primary m-3 buyNow">Buy now</button>
-    <!--<button class="col btn btn-primary m-3 buyNow" name="${product.name}" price="${product.price}" onclick="addItemCart('${product.name}',${product.price})">Add to Cart</button>-->
+    <button class="col btn btn-primary m-3" (click)="showListing(listing.id)">Show</button>
+    <!--<button class="col btn btn-primary m-3" (click)="addWishlist({{listing.id}})">Add to Wishlist</button>-->
   </div>
 </div>
