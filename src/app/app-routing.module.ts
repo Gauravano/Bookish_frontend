@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'wishlist', component: WishlistComponent },
-  { path: 'listings/:id', component: ListingComponent }
+  { path: 'listings/:id', component: ListingComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({

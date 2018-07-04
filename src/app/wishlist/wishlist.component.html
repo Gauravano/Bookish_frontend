@@ -1,3 +1,13 @@
-<p>
-  wishlist works!
-</p>
+<div *ngFor="let listing of wishlist;" class="col-3 card mx-4 p-4" style="box-shadow:2px; margin-bottom:30px;">
+  <h4 class="product-name"><b>{{listing.book_name}}</b></h4>
+  <div class="product-manufacturer">{{listing.author_name}}</div>
+  <div class="row">
+    <div class="col m-3 p-2">
+      <b>&#8377; {{listing.price}}</b>
+    </div>
+  </div>
+  <div class="row">
+    <!--<button class="col btn btn-primary m-3" (click)="showListing(listing.id)">Show</button>-->
+    <!--<button class="col btn btn-primary m-3" (click)="addWishlist({{listing.id}})">Add to Wishlist</button>-->
+  </div>
+</div>

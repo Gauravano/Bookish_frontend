@@ -15,4 +15,10 @@ export class WishlistService {
   getWishlist() {
     return this.http.get('/api/wishlist');
   }
+
+  addWishlistItem(id) {
+    return this.http.post('/api/wishlist/', {
+      bookId: id
+    });
+  }
 }
