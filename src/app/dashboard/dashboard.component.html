@@ -1,1 +1,13 @@
-helloooooo
+<div *ngFor="let listing of listings;" class="col-3 card mx-4 p-4" style="box-shadow:2px; margin-bottom:30px;">
+  <h4 class="product-name"><b>{{listing.book_name}}</b></h4>
+  <div class="product-manufacturer">{{listing.author_name}}</div>
+  <div class="row">
+    <div class="col m-3 p-2">
+      <b>&#8377; {{listing.price}}</b>
+    </div>
+  </div>
+  <div class="row">
+    <button class="col btn btn-primary m-3 buyNow">Buy now</button>
+    <!--<button class="col btn btn-primary m-3 buyNow" name="${product.name}" price="${product.price}" onclick="addItemCart('${product.name}',${product.price})">Add to Cart</button>-->
+  </div>
+</div>

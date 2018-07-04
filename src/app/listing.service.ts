@@ -12,11 +12,7 @@ export class ListingService {
   list: Listing[];
   constructor(private http: HttpClient) { }
 
-  getListings(): Listing[] {
-    this.http.get('/api/listings').subscribe((listings: Listing[]) => {
-      console.log(listings);
-      this.list =  listings;
-    });
-    return this.list;
+  getListings() {
+    return this.http.get('/api/listings');
   }
 }

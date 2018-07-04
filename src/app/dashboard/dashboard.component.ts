@@ -12,7 +12,11 @@ export class DashboardComponent implements OnInit {
   constructor(private listingService: ListingService) { }
 
   ngOnInit() {
-    this.listings = this.listingService.getListings();
+    this.listingService.getListings().subscribe((listings: Listing[]) => {
+      console.log(listings);
+      this.listings =  listings;
+    });
+
 
   }
 

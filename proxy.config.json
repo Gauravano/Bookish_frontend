@@ -8,5 +8,16 @@
     "target": "http://localhost:4000",
     "secure":false,
     "changeOrigin":true
+  },
+  "/api/users/login":{
+    "target": "http://localhost:4000",
+    "secure":false,
+    "changeOrigin":true
+  },
+  "/api/users/logout":{
+    "target": "http://localhost:4000",
+    "secure":false,
+    "changeOrigin":true
   }
+
 }
