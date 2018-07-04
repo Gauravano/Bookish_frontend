@@ -15,4 +15,5 @@ export class ListingService {
   getListings() {
     return this.http.get('/api/listings');
   }
+
 }

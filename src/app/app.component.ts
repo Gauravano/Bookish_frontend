@@ -3,6 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import {Globals} from './globals';
 import { User } from './user';
 import {Router} from '@angular/router';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +13,13 @@ import {Router} from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor(private http: HttpClient, private globals: Globals, private router: Router) { }
+  constructor(private http: HttpClient, private globals: Globals, private router: Router, private auth: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   logOut() {
     this.http.post('/api/users/logout', {}).subscribe((message) => {
-
       console.log('After logout: ', message);
 
       // this.router.navigate(['/dashboard']);
@@ -27,6 +27,32 @@ export class AppComponent implements OnInit {
     }, (err) => {
       console.log(err.error);
     });
+  }
+
+  logIn() {
+    this.auth.getLogin().subscribe((data) => {
+      console.log('data', data);
+    },
+      (err) => {
+        if (err.status === 200) {
+          this.router.navigate(['/login']);
+        } else {
+          console.log(err.error);
+        }
+      });
+  }
+
+  signUp() {
+    this.auth.getSignup().subscribe((data) => {
+        console.log('data', data);
+      },
+      (err) => {
+        if (err.status === 200) {
+          this.router.navigate(['/signup']);
+        } else {
+          console.log(err.error);
+        }
+      });
   }
 }
 
