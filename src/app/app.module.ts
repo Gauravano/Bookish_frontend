@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { Globals } from './globals';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ListingService],
+  providers: [ListingService, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

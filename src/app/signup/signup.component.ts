@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import {Globals} from '../globals';
+import { User } from '../user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,8 +11,7 @@ import { HttpClient} from '@angular/common/http';
 })
 export class SignupComponent implements OnInit {
 
-  current_user = undefined;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private globals: Globals, private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,9 +21,14 @@ export class SignupComponent implements OnInit {
         name: data.name,
         email: data.email,
         password: data.password
-     }).subscribe((user) => {
-       this.current_user = user;
-       console.log(user);
+     }).subscribe((user: User) => {
+       this.globals.current_user = user;
+       console.log('After signup: ', user);
+
+       this.router.navigate(['/dashboard']);
+
+       }, (err) => {
+          console.log(err.error);
      });
   }
 }

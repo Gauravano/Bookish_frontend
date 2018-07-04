@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Listing } from '../../Listing';
+import { Listing } from './Listing';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,14 @@ import { Listing } from '../../Listing';
 
 export class ListingService {
 
+  list: Listing[];
   constructor(private http: HttpClient) { }
 
-  getListings() {
+  getListings(): Listing[] {
     this.http.get('/api/listings').subscribe((listings: Listing[]) => {
       console.log(listings);
-      return listings;
+      this.list =  listings;
     });
+    return this.list;
   }
 }
