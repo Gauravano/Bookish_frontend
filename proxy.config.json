@@ -4,11 +4,6 @@
     "secure":false,
     "changeOrigin":true
   },
-  "/api/messages/:id":{
-    "target": "http://localhost:4000",
-    "secure":false,
-    "changeOrigin":true
-  },
   "/api/users/signup":{
     "target": "http://localhost:4000",
     "secure":false,
@@ -39,7 +34,22 @@
     "secure":false,
     "changeOrigin":true
   },
+  "/api/messages":{
+  "target": "http://localhost:4000",
+  "secure":false,
+  "changeOrigin":true
+  },
   "/api/messages/create":{
+    "target": "http://localhost:4000",
+    "secure":false,
+    "changeOrigin":true
+  },
+  "/api/listings/user":{
+    "target": "http://localhost:4000",
+    "secure":false,
+    "changeOrigin":true
+  },
+  "/api/messages/:id":{
     "target": "http://localhost:4000",
     "secure":false,
     "changeOrigin":true

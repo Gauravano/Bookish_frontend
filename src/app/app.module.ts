@@ -13,6 +13,8 @@ import { Globals } from './globals';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ListingComponent } from './listing/listing.component';
 import { NewListingComponent } from './new-listing/new-listing.component';
+import { MessageComponent } from './message/message.component';
+import {MessageService} from './message.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { NewListingComponent } from './new-listing/new-listing.component';
     LoginComponent,
     WishlistComponent,
     ListingComponent,
-    NewListingComponent
+    NewListingComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { NewListingComponent } from './new-listing/new-listing.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ListingService, Globals],
+  providers: [ListingService, Globals, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

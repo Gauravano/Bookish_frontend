@@ -47,7 +47,7 @@ export class ListingComponent implements OnInit {
   getMessages() {
     console.log('Fetching messages!', this.id);
 
-    this.http.get('api/messages/1').subscribe((data) => {
+    this.messageService.fetchMessages(this.id).subscribe((data) => {
         console.log(data);
       }, (err) => {
         console.log(err);

@@ -7,6 +7,7 @@ import {LoginComponent} from './login/login.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {ListingComponent} from './listing/listing.component';
 import {NewListingComponent} from './new-listing/new-listing.component';
+import {MessageComponent} from './message/message.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: 'listings/add', component: NewListingComponent },
   { path: 'listings/:id', component: ListingComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'messages', component: MessageComponent }
 
 ];
 
