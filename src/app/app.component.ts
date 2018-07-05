@@ -54,5 +54,9 @@ export class AppComponent implements OnInit {
         }
       });
   }
+
+  newListing() {
+    this.router.navigate(['/listings/add']);
+  }
 }
 

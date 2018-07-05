@@ -17,21 +17,6 @@ export class NewListingComponent implements OnInit {
   }
 
   createListing(data) {
-    this.onUpload(data);
-    // this.listingService.createListing(data).subscribe((listing) => {
-    //   console.log(listing);
-    //   this.router.navigate(['/dashboard']);
-    // }, (err) => {
-    //   console.log(err);
-    // });
-  }
-
-  onFileSelected(event) {
-    this.selectedFile = <File>event.target.files[0];
-  }
-
-  onUpload(data) {
-    console.log(this.selectedFile);
     const fd: FormData = new FormData();
     fd.append('bookImage', this.selectedFile, this.selectedFile.name);
     fd.append('price', data.price);
@@ -40,10 +25,17 @@ export class NewListingComponent implements OnInit {
     fd.append('condition', data.condition);
 
     this.http.post('api/listings/add', fd).subscribe((res) => {
-      console.log('res');
+      console.log('res', res);
+      this.router.navigate(['/dashboard']);
     }, (err) => {
       console.log(err);
     });
+
+
+  }
+
+  onFileSelected(event) {
+    this.selectedFile = <File>event.target.files[0];
   }
 
 }
