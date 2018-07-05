@@ -19,4 +19,8 @@ export class AuthenticationService {
     return this.http.get('api/users/signup');
   }
 
+  getUser(id) {
+    return this.http.get(`api/users/${id}`);
+  }
+
 }

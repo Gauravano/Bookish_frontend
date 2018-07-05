@@ -4,6 +4,9 @@ import {Listing} from '../Listing';
 import {WishlistService} from '../wishlist.service';
 import {MessageService} from '../message.service';
 import * as $ from 'jquery';
+import {MessageSet} from '../message-set';
+import {AuthenticationService} from '../authentication.service';
+import {User} from '../user';
 
 @Component({
   selector: 'app-message',
@@ -12,9 +15,12 @@ import * as $ from 'jquery';
 })
 export class MessageComponent implements OnInit {
   myListItems: Listing[];
+  messageSet: MessageSet;
+
   constructor(private listingService: ListingService,
               private wishlistService: WishlistService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.getUserSpecificListings();
@@ -23,7 +29,7 @@ export class MessageComponent implements OnInit {
   getMessages(id) {
     this.messageService.fetchMessages(id).subscribe((data) => {
       console.log(data);
-      // this.organizeData(data);
+      this.organizeData(data);
     }, (err) => {
       console.log(err);
     });
@@ -35,6 +41,35 @@ export class MessageComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
+  }
+
+  organizeData(data) {
+    const senderIds = [];
+    for (let i = 0 ; i < data.length ; i++ ) {
+      senderIds.push(data[i].senderId);
+    }
+
+    const fin = [];
+
+    const uniq_ids = Array.from(new Set(senderIds));
+    console.log(uniq_ids);
+
+    for (let i = 0 ; i < uniq_ids.length ; i++ ) {
+      const temp = [];
+      for (let j = 0 ; j < data.length ; j++ ) {
+        console.log(data[j]);
+        if (data[j].senderId === uniq_ids[i] ) {
+          temp.push(data[j]);
+        }
+
+      }
+      console.log('Message array', temp);
+      this.authService.getUser(uniq_ids[i]).subscribe((user: User) => {
+        fin[i] = new MessageSet(uniq_ids[i], temp, user.name);
+      });
+
+    }
+
   }
 
 }
