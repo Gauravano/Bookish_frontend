@@ -13,11 +13,21 @@ export class ListingService {
   constructor(private http: HttpClient) { }
 
   getListings() {
-    return this.http.get('/api/listings');
+    return this.http.get('api/listings');
   }
 
   getListing(id) {
     return this.http.get(`api/listings/${id}`);
+  }
+
+  createListing(data) {
+    return this.http.post('api/listings/add', {
+      book_name: data.book_name,
+      author_name: data.author_name,
+      condition: data.condition,
+      price: data.price,
+      image: data.image
+    });
   }
 
 }

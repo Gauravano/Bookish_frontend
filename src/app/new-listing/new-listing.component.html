@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>create new Listing</h1>
+  <form #newListingForm="ngForm" (ngSubmit)="createListing(newListingForm.value)">
+    <div class="form-group">
+      <label for="book_name">Book Name</label>
+      <input name="book_name" type="text" class="form-control" id="book_name" required ngModel>
+    </div>
+
+    <div class="form-group">
+      <label for="author_name">Author Name</label>
+      <input name="author_name" type="text" class="form-control" id="author_name" required ngModel>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input name="price" type="text" class="form-control" id="price" required ngModel>
+    </div>
+
+    <div class="form-group">
+      <label for="condition">Condition</label>
+      <input name="condition" type="text" class="form-control" id="condition" required ngModel>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Image</label>
+      <input name="image" type="file" (change)="onFileSelected($event)" class="form-control" id="image" required ngModel>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+</div>

@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { Globals } from './globals';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ListingComponent } from './listing/listing.component';
+import { NewListingComponent } from './new-listing/new-listing.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ListingComponent } from './listing/listing.component';
     SignupComponent,
     LoginComponent,
     WishlistComponent,
-    ListingComponent
+    ListingComponent,
+    NewListingComponent
   ],
   imports: [
     BrowserModule,
