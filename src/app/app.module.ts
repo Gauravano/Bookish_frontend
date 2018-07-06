@@ -9,7 +9,7 @@ import {ListingService} from './listing.service';
 import {HttpClientModule} from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Globals } from './globals';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ListingComponent } from './listing/listing.component';
@@ -29,11 +29,12 @@ import {MessageService} from './message.service';
     MessageComponent
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MDBBootstrapModule.forRoot()
+    ReactiveFormsModule
   ],
   providers: [ListingService, Globals, MessageService],
   bootstrap: [AppComponent],

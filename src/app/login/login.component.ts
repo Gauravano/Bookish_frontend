@@ -3,6 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import {Globals} from '../globals';
 import { User } from '../user';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,20 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  constructor(private http: HttpClient, private globals: Globals, private router: Router, private fb: FormBuilder) {
+    this.loginForm = fb.group({
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required]
+    });
+  }
 
-  constructor(private http: HttpClient, private globals: Globals, private router: Router) { }
 
   ngOnInit() {
   }
 
   submitForm(data) {
+    console.log('dd', data);
     this.http.post('/api/users/login', {
       name: data.name,
       email: data.email,
