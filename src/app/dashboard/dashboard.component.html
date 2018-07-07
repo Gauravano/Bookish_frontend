@@ -1,14 +1,76 @@
-<div *ngFor="let listing of listings;" class="col-3 card mx-4 p-4" style="box-shadow:2px; margin-bottom:30px;">
-  <img src="http://localhost:4000/{{listing.book_image_url}}" width="300px" height="100px">
-  <h4 class="product-name"><b>{{listing.book_name}}</b></h4>
-  <div class="product-manufacturer">{{listing.author_name}}</div>
+<div class="container">
+
+<!--Section: Products v.1-->
+<section class="text-center pb-3 my-5">
+  <!--Section heading-->
+  <h2 class="h1 font-weight-bold h1 py-5">Our bestsellers</h2>
+  <!--Section description-->
+  <p class="grey-text pb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse
+    quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.</p>
+
+
+  <!--Grid row-->
   <div class="row">
-    <div class="col m-3 p-2">100px
-      <b>&#8377; {{listing.price}}</b>
+    <!--Grid column-->
+    <div *ngFor="let listing of listings;" class="col-md-4">
+      <!--Card-->
+      <div class="card card-cascade narrower card-ecommerce">
+        <!--Card image-->
+        <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+          <img src="http://localhost:4000/{{listing.book_image_url}}" class="img-fluid" alt="sample photo">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!--Card image-->
+        <!--Card content-->
+        <div class="card-body card-body-cascade text-center">
+          <!--Category & Title-->
+          <a href="" class="grey-text">
+            <h5>{{listing.author_name}}</h5>
+          </a>
+          <h4 class="card-title">
+            <strong>
+              <a href="">{{listing.book_name}}</a>
+            </strong>
+          </h4>
+          <!--Rating-->
+          <ul class="rating">
+            <li>
+              <i class="fa fa-star"></i>
+            </li>
+            <li>
+              <i class="fa fa-star-o"></i>
+            </li>
+          </ul>
+          <!--Description-->
+          <p class="card-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit..
+          </p>
+          <!--Card footer-->
+          <div class="card-footer">
+                  <span class="float-left font-weight-bold">
+                    <strong>{{listing.price}}</strong>
+                  </span>
+            <span class="float-right">
+                    <a data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                      <i class="fa fa-shopping-cart grey-text ml-3"></i>
+                    </a>
+                    <a data-toggle="tooltip" (click)="showListing(listing.id)" data-placement="top" title="View listing">
+                      <i class="fa fa-share-alt grey-text ml-3"></i>
+                    </a>
+                    <a class="active" (click)="addWishlist(listing.id)" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">
+                      <i style="color: red;" class="fa fa-heart ml-3"></i>
+                    </a>
+                  </span>
+          </div>
+        </div>
+        <!--Card content-->
+      </div>
+      <!--Card-->
     </div>
+    <!--Grid column-->
   </div>
-  <div class="row">
-    <button class="col btn btn-primary m-3" (click)="showListing(listing.id)">Show</button>
-    <button class="col btn btn-primary m-3" (click)="addWishlist(listing.id)">Add to Wishlist</button>
-  </div>
+  <!--Grid row-->
+</section>
+<!--Section: Products v.1-->
 </div>

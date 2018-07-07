@@ -1,22 +1,84 @@
 <div class="container">
-  <h1>Signup Form</h1>
-  <form #signupForm="ngForm" (ngSubmit)="submitForm(signupForm.value)">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input name="name" type="text" class="form-control" id="name" required ngModel>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-6">
+
+      <div class="card">
+
+        <div class="modal-header light-blue darken-3 white-text">
+          <h4 class="title text-center py-4">
+            <i class="fa fa-pencil"></i> Signup</h4>
+        </div>
+
+        <!-- Card body -->
+        <div class="card-body">
+
+          <!-- Material form register -->
+          <form [formGroup]="signupForm" (ngSubmit)="submitForm(signupForm.value)">
+            <div class="md-form">
+              <i class="fa fa-envelope prefix"></i>
+              <input type="text" id="materialFormCardNameEx" data-error="Please enter valid name!" formControlName="name" class="form-control" mdbInputDirective>
+              <label for="materialFormCardEmailEx" class="font-weight-light">Your Name</label>
+            </div>
+
+            <br>
+
+            <div class="md-form">
+              <i class="fa fa-envelope prefix"></i>
+              <input type="email" id="materialFormCardEmailEx" data-error="Please enter valid email ID!" formControlName="email" class="form-control" mdbInputDirective>
+              <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
+            </div>
+
+            <br>
+
+            <div class="md-form">
+              <i class="fa fa-lock prefix"></i>
+              <input type="text" id="materialFormCardContactEx" data-error="Please enter valid contact number!" formControlName="contact" class="form-control"
+                     mdbInputDirective>
+              <label for="materialFormCardContactEx" class="font-weight-light">Your contact number</label>
+            </div>
+
+            <br>
+
+            <div class="md-form">
+              <i class="fa fa-lock prefix"></i>
+              <input type="text" id="materialFormCardCollegeEx" formControlName="college" class="form-control"
+                     mdbInputDirective>
+              <label for="materialFormCardCollegeEx" class="font-weight-light">Your college</label>
+            </div>
+            <br>
+            <div class="md-form">
+              <i class="fa fa-lock prefix"></i>
+              <input type="text" id="materialFormCardAddressEx" formControlName="address" class="form-control"
+                     mdbInputDirective>
+              <label for="materialFormCardAddressEx" class="font-weight-light">Your address</label>
+            </div>
+            <br>
+            <div class="md-form">
+              <i class="fa fa-lock prefix"></i>
+              <input type="password" id="materialFormCardPasswordEx" data-error="Password is required!" formControlName="password" class="form-control"
+                     mdbInputDirective>
+              <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
+            </div>
+            <br>
+
+            <div class="md-form">
+              <i class="fa fa-exclamation-triangle prefix grey-text"></i>
+              <input type="password" id="materialFormCardConfirmEx" formControlName="confirmPassword" class="form-control" mdbInputDirective>
+              <label for="materialFormCardConfirmEx" class="font-weight-light">Confirm your password</label>
+            </div>
+
+            <div class="text-center py-4 mt-3">
+              <button class="btn btn-cyan waves-light" [disabled]="signupForm.invalid" type="submit" mdbWavesEffect>Sign up</button>
+            </div>
+          </form>
+          <!-- Material form register -->
+
+        </div>
+        <!-- Card body -->
+
+      </div>
+      <!-- Card -->
     </div>
-
-    <div class="form-group">
-      <label for="name">Email</label>
-      <input name="email" type="text" class="form-control" id="email" required ngModel>
-    </div>
-
-    <div class="form-group">
-      <label for="name">Password</label>
-      <input name="password" type="text" class="form-control" id="password" required ngModel>
-    </div>
-
-    <button type="submit" class="btn btn-success">Submit</button>
-
-  </form>
-</div>
+    <div class="col"></div>
+  </div></div>

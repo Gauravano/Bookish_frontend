@@ -1,4 +1,5 @@
 export class User {
+  id: number;
   name: string;
   email: string;
   password: string;
@@ -6,7 +7,8 @@ export class User {
   contact: string;
   address: string;
 
-  constructor(name, email, password, college, contact, address) {
+  constructor(id, name, email, password, college, contact, address) {
+    this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;

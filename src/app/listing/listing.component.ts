@@ -7,6 +7,7 @@ import {Listing} from '../Listing';
 import {WishlistService} from '../wishlist.service';
 import {MessageService} from '../message.service';
 import * as $ from 'jquery';
+import { Message } from '../message';
 
 @Component({
   selector: 'app-listing',
@@ -16,15 +17,23 @@ import * as $ from 'jquery';
 export class ListingComponent implements OnInit {
   id = +this.route.snapshot.paramMap.get('id');
   listing: Listing;
+  showMessage  = false;
+  conversation: Message[];
+  current_user = localStorage.getItem('userObject');
+
   constructor(private route: ActivatedRoute,
               private location: Location,
               private listingService: ListingService,
               private wishlistService: WishlistService,
               private messageService: MessageService,
-              private http: HttpClient) { }
+              private http: HttpClient) {
+
+  }
 
   ngOnInit() {
     this.getListing();
+    this.getMessages();
+
   }
 
   getListing() {
@@ -47,18 +56,25 @@ export class ListingComponent implements OnInit {
   getMessages() {
     console.log('Fetching messages!', this.id);
 
-    this.messageService.fetchMessages(this.id).subscribe((data) => {
-        console.log(data);
+    this.messageService.fetchMessages(this.id).subscribe((data: Message[]) => {
+        console.log('conversation', data);
+        this.conversation = data;
+        if (this.conversation.length > 0) {
+          this.showMessage = true;
+        }
       }, (err) => {
         console.log(err);
       });
   }
 
   sendMessage(data) {
+    console.log('Inside', data);
     this.messageService.sendMessage(data.message, this.listing.id).subscribe((message) => {
       console.log(message);
 
-      $('#contactForm').prepend(`<div style='background-color: dodgerblue; padding: 4px;'>${data.message}</div>`);
+      $('#point').prepend(`<div class='row'><div style='width: 400px; border-radius: 25px;
+ border-top-left-radius: 0px; background-color: lightgoldenrodyellow;
+ padding: 10px; margin-bottom: 10px;'>${data.message}</div></div>`);
 
     }, (err) => {
       console.log(err);

@@ -16,13 +16,15 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient, private globals: Globals, private router: Router, private auth: AuthenticationService) { }
 
   ngOnInit() {
+    const retrievedObject = localStorage.getItem('userObject');
+    console.log('retrievedObject: ', JSON.parse(retrievedObject));
   }
 
   logOut() {
     this.http.post('/api/users/logout', {}).subscribe((message) => {
       console.log('After logout: ', message);
-
-      // this.router.navigate(['/dashboard']);
+      localStorage.removeItem('userObject');
+      this.router.navigate(['/dashboard']);
 
     }, (err) => {
       console.log(err.error);

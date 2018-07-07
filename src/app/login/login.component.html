@@ -1,42 +1,34 @@
 <div class="container">
-  <!--<h1>Login Form</h1>-->
-  <!--<form #loginForm="ngForm" (ngSubmit)="submitForm(loginForm.value)">-->
-
-    <!--<div class="form-group">-->
-      <!--<label for="email">Email</label>-->
-      <!--<input name="email" type="text" class="form-control" id="email" required ngModel>-->
-    <!--</div>-->
-
-    <!--<div class="form-group">-->
-      <!--<label for="password">Password</label>-->
-      <!--<input name="password" type="text" class="form-control" id="password" required ngModel>-->
-    <!--</div>-->
-
-    <!--<button type="submit" class="btn btn-success">Submit</button>-->
-
-  <!--</form>-->
-
-
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
 
 <div class="card">
+
+  <div class="modal-header light-blue darken-3 white-text">
+    <h4 class="title text-center py-4">
+      <i class="fa fa-pencil"></i> Login</h4>
+  </div>
+
   <!-- Card body -->
   <div class="card-body">
 
     <!-- Material form register -->
     <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
-      <p class="h4 text-center py-4">Sign up</p>
 
       <!-- Material input email -->
       <div class="md-form">
-        <i class="fa fa-envelope prefix grey-text"></i>
-        <input type="email" id="materialFormCardEmailEx" formControlName="email" class="form-control" mdbInputDirective>
+        <i class="fa fa-envelope prefix"></i>
+        <input type="email" id="materialFormCardEmailEx" data-error="Please enter valid email ID!" formControlName="email" class="form-control" mdbInputDirective>
         <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
       </div>
 
+      <br>
+
       <!-- Material input password -->
       <div class="md-form">
-        <i class="fa fa-lock prefix grey-text"></i>
-        <input type="password" id="materialFormCardPasswordEx" formControlName="password" class="form-control"
+        <i class="fa fa-lock prefix"></i>
+        <input type="password" id="materialFormCardPasswordEx" data-error="Password is required!" formControlName="password" class="form-control"
                mdbInputDirective>
         <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
       </div>
@@ -52,4 +44,6 @@
 
 </div>
 <!-- Card -->
-</div>
+    </div>
+  <div class="col"></div>
+</div></div>

@@ -4,3 +4,7 @@
     <button (click)="getMessages(item.id)">Show Messages</button>
   </div>
 </div>
+
+<div *ngFor="let message of messageSets">
+  {{message.messages}}
+</div>

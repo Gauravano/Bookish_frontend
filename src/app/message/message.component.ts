@@ -15,7 +15,7 @@ import {User} from '../user';
 })
 export class MessageComponent implements OnInit {
   myListItems: Listing[];
-  messageSet: MessageSet;
+  messageSets: MessageSet[] = [];
 
   constructor(private listingService: ListingService,
               private wishlistService: WishlistService,
@@ -49,7 +49,7 @@ export class MessageComponent implements OnInit {
       senderIds.push(data[i].senderId);
     }
 
-    const fin = [];
+    const fin: MessageSet[] = [];
 
     const uniq_ids = Array.from(new Set(senderIds));
     console.log(uniq_ids);
@@ -65,10 +65,11 @@ export class MessageComponent implements OnInit {
       }
       console.log('Message array', temp);
       this.authService.getUser(uniq_ids[i]).subscribe((user: User) => {
-        fin[i] = new MessageSet(uniq_ids[i], temp, user.name);
+        this.messageSets.push(new MessageSet(uniq_ids[i], temp, user.name));
       });
 
     }
+    console.log(this.messageSets);
 
   }
 

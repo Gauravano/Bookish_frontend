@@ -1,28 +1,156 @@
-<div class="container"> <div class="col-3 card mx-4 p-4" style="box-shadow:2px; margin-bottom:30px;">
-  <img src='http://localhost:4000/{{listing.book_image_url}}' width="300px" height="100px">
-  <h4 class="product-name"><b>{{listing.book_name}}</b></h4>
-  <div class="product-manufacturer">{{listing.author_name}}</div>
-  <div class="row">
-    <div class="col m-3 p-2">100px
-      <b>&#8377; {{listing.price}}</b>
-    </div>
-  </div>
-  <div class="row">
-    <button class="col btn btn-primary m-3" (click)="addWishlist(listing.id)">Add to Wishlist</button>
-  </div>
-</div>
+<!--<div class="container"> <div class="col-3 card mx-4 p-4" style="box-shadow:2px; margin-bottom:30px;">-->
+<!--<img src='http://localhost:4000/{{listing.book_image_url}}' width="300px" height="100px">-->
+<!--<h4 class="product-name"><b>{{listing.book_name}}</b></h4>-->
+<!--<div class="product-manufacturer">{{listing.author_name}}</div>-->
+<!--<div class="row">-->
+<!--<div class="col m-3 p-2">100px-->
+<!--<b>&#8377; {{listing.price}}</b>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<button class="col btn btn-primary m-3" (click)="addWishlist(listing.id)">Add to Wishlist</button>-->
+<!--</div>-->
+<!--</div>-->
 
-<div><h4 id="trial" style="text-align: center;">Contact the Seller</h4></div>
-<hr id="point" style="margin-bottom: 40px;">
+<!--<div><h4 id="trial" style="text-align: center;">Contact the Seller</h4></div>-->
+<!--<hr id="point" style="margin-bottom: 40px;">-->
+<!--<div class="container">-->
+<!--<form #contactSellerForm="ngForm" id="contactForm" (ngSubmit)="sendMessage(contactSellerForm.value)">-->
+<!--<div class="form-group">-->
+<!--<input name="message" type="text" class="form-control" id="message" required ngModel>-->
+<!--</div>-->
+
+<!--<button type="submit" class="btn btn-success">Send</button>-->
+
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--<button class="btn btn-success" (click)="getMessages()">Message</button>-->
+
 <div class="container">
-<form #contactSellerForm="ngForm" id="contactForm" (ngSubmit)="sendMessage(contactSellerForm.value)">
-  <div class="form-group">
-    <input name="message" type="text" class="form-control" id="message" required ngModel>
+
+  <section id="productDetails" class="pb-5">
+
+    <!--News card-->
+    <div class="card mt-5 hoverable">
+      <div class="row mt-5">
+        <div class="col-lg-6">
+          <div class="row mx-2">
+            <!--Carousel Wrapper-->
+            <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
+
+              <!--Slides-->
+              <div class="carousel-inner text-center text-md-left" role="listbox">
+                <div class="carousel-item active">
+                  <img src="http://localhost:4000/{{listing.book_image_url}}" alt="First slide" class="img-fluid">
+                </div>
+              </div>
+              <!--/.Slides-->
+
+            </div>
+            <!--/.Carousel Wrapper-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <div class="col-lg-5 mr-3 text-center text-md-left">
+          <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+            <strong>{{listing.book_name}} </strong>
+          </h2>
+          <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">{{listing.condition}}</span>
+
+
+          <span class="badge badge-success product mb-4 ml-2">SALE</span>
+          <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
+                            <span class="red-text font-weight-bold">
+                                <strong>&#8377; {{listing.price}}</strong>
+                            </span>
+          </h3>
+
+          <p class="ml-xl-0 ml-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente nesciunt atque nemo neque ut officiis
+            nostrum incidunt maiores, magni optio et sunt suscipit iusto nisi totam quis, nobis mollitia
+            necessitatibus.
+          </p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Author: </strong>{{listing.author_name}}</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Seller: </strong>{{listing.user_name}}</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Condition: </strong>{{listing.condition}}</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Availability: </strong>In stock</p>
+
+          <!-- Add to Cart -->
+          <section class="color">
+            <div class="mt-5">
+
+              <div class="row mt-3 mb-4">
+                <div class="col-md-12 text-center text-md-left text-md-right">
+                  <button class="btn btn-primary btn-rounded waves-effect waves-light" (click)="addWishlist(listing.id)">
+                    <i class="fa fa-heart mr-2" aria-hidden="true"></i> Add to wishlist</button>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- /.Add to Cart -->
+        </div>
+      </div>
+    </div>
+    <!--News card-->
+
+  </section>
+
+  <div *ngIf="showMessage;">
+    <div class="divider-new">
+      <h3 class="h3-responsive font-weight-bold blue-text mx-3">Your recent messages with {{listing.user_name}} <small>(Seller)</small></h3>
+    </div>
+
+    <div class="row" *ngFor="let message of conversation;" id="messages">
+      <div style="width: 400px; border-radius: 25px; border-top-left-radius: 0px; background-color: lightgoldenrodyellow; padding: 10px; margin-bottom: 10px" >{{message.content}}</div>
+    </div>
+
   </div>
 
-  <button type="submit" class="btn btn-success">Send</button>
+  <div id="point" *ngIf="current_user; else no_user;">
+    <section>
+      <div class="reply-form">
+        <h2 class="h2 section-heading text-center">Leave a message for Seller</h2>
+        <br>
 
-</form>
+        <div class="row">
+          <!--&lt;!&ndash;Image column&ndash;&gt;-->
+          <!--<div class="col-sm-2 col-12">-->
+          <!--<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" class="avatar rounded-circle z-depth-1-half">-->
+          <!--</div>-->
+          <!--&lt;!&ndash;/.Image column&ndash;&gt;-->
+
+          <div class="col-sm-10 col-12">
+            <div class="md-form">
+              <form #contactSellerForm="ngForm" id="contactForm" (ngSubmit)="sendMessage(contactSellerForm.value)">
+                <textarea type="text" name="message" id="message" class="md-textarea form-control" required ngModel></textarea>
+
+              <label for="message">Your message</label>
+              <div class="text-center mx-auto">
+                <button type="submit" class="btn btn-primary waves-light" mdbWavesEffect>Send <i class="fa fa-send-o ml-2"></i></button>
+              </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+  </div>
+  <ng-template #no_user>
+    <div class="divider-new">
+      <h3 class="h3-responsive font-weight-bold black-text mx-3">Leave a message for seller by signing in...</h3>
+    </div>
+    <div class="row justify-content-md-center">
+      <button type="button" class="btn btn-info waves-effect waves-light" routerLink="/login">Log In <i class="fa fa-sign-in ml-2"></i></button>
+      <button type="button" class="btn btn-info waves-effect waves-light" routerLink="/signup">Sign Up</button>
+    </div>
+  </ng-template>
+
 </div>
-</div>
-<button class="btn btn-success" (click)="getMessages()">Message</button>
+
+

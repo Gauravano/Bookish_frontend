@@ -33,4 +33,8 @@ export class ListingService {
   getListItems() {
     return this.http.get('api/listings/user');
   }
+
+  deleteWishlistItem(id) {
+    return this.http.get(`api/listings/delete/${id}`);
+  }
 }

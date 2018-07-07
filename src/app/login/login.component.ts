@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
       this.globals.current_user = user;
       console.log('After login: ', user);
 
+      const userObj = { 'id': user.id, 'name': user.name };
+      localStorage.setItem('userObject', JSON.stringify(userObj));
+
       this.router.navigate(['/dashboard']);
 
     }, (err) => {
