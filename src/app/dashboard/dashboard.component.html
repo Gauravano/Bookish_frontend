@@ -1,76 +1,301 @@
+<!--<div class="container">-->
+
+  <!--&lt;!&ndash;Section: Products v.1&ndash;&gt;-->
+  <!--<section class="text-center pb-3 my-5">-->
+    <!--&lt;!&ndash;Section heading&ndash;&gt;-->
+    <!--<h2 class="h1 font-weight-bold h1 py-5">Our bestsellers</h2>-->
+    <!--&lt;!&ndash;Section description&ndash;&gt;-->
+    <!--<p class="grey-text pb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse-->
+      <!--quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.</p>-->
+
+
+    <!--&lt;!&ndash;Grid row&ndash;&gt;-->
+    <!--<div class="row">-->
+      <!--&lt;!&ndash;Grid column&ndash;&gt;-->
+      <!--<div *ngFor="let listing of listings;" class="col-md-4">-->
+        <!--&lt;!&ndash;Card&ndash;&gt;-->
+        <!--<div class="card card-cascade narrower card-ecommerce">-->
+          <!--&lt;!&ndash;Card image&ndash;&gt;-->
+          <!--<div class="view view-cascade overlay waves-light" mdbWavesEffect>-->
+            <!--<img src="http://localhost:4000/{{listing.book_image_url}}" class="img-fluid" alt="sample photo">-->
+            <!--<a>-->
+              <!--<div class="mask rgba-white-slight"></div>-->
+            <!--</a>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;Card image&ndash;&gt;-->
+          <!--&lt;!&ndash;Card content&ndash;&gt;-->
+          <!--<div class="card-body card-body-cascade text-center">-->
+            <!--&lt;!&ndash;Category & Title&ndash;&gt;-->
+            <!--<a href="" class="grey-text">-->
+              <!--<h5>{{listing.author_name}}</h5>-->
+            <!--</a>-->
+            <!--<h4 class="card-title">-->
+              <!--<strong>-->
+                <!--<a href="">{{listing.book_name}}</a>-->
+              <!--</strong>-->
+            <!--</h4>-->
+            <!--&lt;!&ndash;Rating&ndash;&gt;-->
+            <!--<ul class="rating">-->
+              <!--<li>-->
+                <!--<i class="fa fa-star"></i>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<i class="fa fa-star-o"></i>-->
+              <!--</li>-->
+            <!--</ul>-->
+            <!--&lt;!&ndash;Description&ndash;&gt;-->
+            <!--<p class="card-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit..-->
+            <!--</p>-->
+            <!--&lt;!&ndash;Card footer&ndash;&gt;-->
+            <!--<div class="card-footer">-->
+                  <!--<span class="float-left font-weight-bold">-->
+                    <!--<strong>{{listing.price}}</strong>-->
+                  <!--</span>-->
+              <!--<span class="float-right">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Add to Cart">-->
+                      <!--<i class="fa fa-shopping-cart grey-text ml-3"></i>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" (click)="showListing(listing.id)" data-placement="top" title="View listing">-->
+                      <!--<i class="fa fa-share-alt grey-text ml-3"></i>-->
+                    <!--</a>-->
+                    <!--<a class="active" (click)="addWishlist(listing.id)" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">-->
+                      <!--<i style="color: red;" class="fa fa-heart ml-3"></i>-->
+                    <!--</a>-->
+                  <!--</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;Card content&ndash;&gt;-->
+        <!--</div>-->
+        <!--&lt;!&ndash;Card&ndash;&gt;-->
+      <!--</div>-->
+      <!--&lt;!&ndash;Grid column&ndash;&gt;-->
+    <!--</div>-->
+    <!--&lt;!&ndash;Grid row&ndash;&gt;-->
+  <!--</section>-->
+  <!--&lt;!&ndash;Section: Products v.1&ndash;&gt;-->
+<!--</div>-->
+
+
 <div class="container">
 
-<!--Section: Products v.1-->
-<section class="text-center pb-3 my-5">
-  <!--Section heading-->
-  <h2 class="h1 font-weight-bold h1 py-5">Our bestsellers</h2>
-  <!--Section description-->
-  <p class="grey-text pb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse
-    quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.</p>
+<div class="row pt-4">
+
+  <!-- Sidebar -->
+  <div class="col-lg-3">
+    <form class="form" [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm.value)">
+
+    <div class="">
+      <!-- Grid row -->
+      <div class="row">
+
+        <div class="col-md-6 col-lg-12 mb-5">
+          <!-- Panel -->
+          <h5 class="font-weight-bold dark-grey-text"><strong>Search</strong></h5>
+          <div class="divider"></div>
 
 
-  <!--Grid row-->
-  <div class="row">
-    <!--Grid column-->
-    <div *ngFor="let listing of listings;" class="col-md-4">
-      <!--Card-->
-      <div class="card card-cascade narrower card-ecommerce">
-        <!--Card image-->
-        <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-          <img src="http://localhost:4000/{{listing.book_image_url}}" class="img-fluid" alt="sample photo">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
+            <div class="md-form form-group">
+              <i class="fa fa-envelope prefix"></i>
+              <input mdbInputDirective type="text" class="form-control" id="form9" formControlName="book_name">
+              <label for="form9">Search by book name</label>
+            </div>
+            <div class="md-form form-group">
+              <a class="btn btn-primary btn-sm waves-light" mdbWavesEffect><i class="fa fa-search"></i></a>
+            </div>
+
+            <div class="md-form form-group">
+              <i class="fa fa-lock prefix"></i>
+              <input mdbInputDirective type="text" class="form-control" id="form10" formControlName="author_name">
+              <label for="form10">Search by author</label>
+            </div>
+
+            <div class="md-form form-group">
+              <a class="btn btn-primary btn-lg waves-light" mdbWavesEffect><i class="fa fa-search"></i></a>
+            </div>
+
+
         </div>
-        <!--Card image-->
-        <!--Card content-->
-        <div class="card-body card-body-cascade text-center">
-          <!--Category & Title-->
-          <a href="" class="grey-text">
-            <h5>{{listing.author_name}}</h5>
-          </a>
-          <h4 class="card-title">
-            <strong>
-              <a href="">{{listing.book_name}}</a>
-            </strong>
-          </h4>
-          <!--Rating-->
-          <ul class="rating">
-            <li>
-              <i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star-o"></i>
-            </li>
-          </ul>
-          <!--Description-->
-          <p class="card-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit..
-          </p>
-          <!--Card footer-->
-          <div class="card-footer">
-                  <span class="float-left font-weight-bold">
-                    <strong>{{listing.price}}</strong>
-                  </span>
-            <span class="float-right">
-                    <a data-toggle="tooltip" data-placement="top" title="Add to Cart">
-                      <i class="fa fa-shopping-cart grey-text ml-3"></i>
-                    </a>
-                    <a data-toggle="tooltip" (click)="showListing(listing.id)" data-placement="top" title="View listing">
-                      <i class="fa fa-share-alt grey-text ml-3"></i>
-                    </a>
-                    <a class="active" (click)="addWishlist(listing.id)" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">
-                      <i style="color: red;" class="fa fa-heart ml-3"></i>
-                    </a>
-                  </span>
+
+        <!-- Filter by category-->
+        <div class="col-md-6 col-lg-12 mb-5">
+          <h5 class="font-weight-bold dark-grey-text"><strong>Condition</strong></h5>
+          <div class="divider"></div>
+
+          <div class="form-group ">
+            <input formControlName="condition" value="All" type="radio" id="radio99" checked>
+            <label for="radio99" class="dark-grey-text">All</label>
           </div>
+
+          <!--Radio group-->
+          <div class="form-group ">
+            <input formControlName="condition" value="New" type="radio" id="radio100">
+            <label for="radio100" class="dark-grey-text">New</label>
+          </div>
+
+          <div class="form-group">
+            <input formControlName="condition" value="Almost new" type="radio" id="radio101">
+            <label for="radio101" class="dark-grey-text">Almost New</label>
+          </div>
+
+          <div class="form-group">
+            <input formControlName="condition" value="Slightly damage" type="radio" id="radio102">
+            <label for="radio102" class="dark-grey-text">Slightly Damage</label>
+          </div>
+
+          <div class="form-group">
+            <input formControlName="condition" value="Worn" type="radio" id="radio103">
+            <label for="radio103" class="dark-grey-text">Worn</label>
+          </div>
+
+          <!--Radio group-->
         </div>
-        <!--Card content-->
+        <!-- /Filter by category-->
+
       </div>
-      <!--Card-->
+      <!-- /Grid row -->
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Filter by price  -->
+        <div class="col-md-6 col-lg-12 mb-5">
+          <h5 class="font-weight-bold dark-grey-text"><strong>Price</strong></h5>
+          <div class="divider"></div>
+
+          <div class="range-field mt-3">
+            <input mdbInputDirective formControlName="price" id="calculatorSlider" class="no-border" type="range" value="0" min="0" max="10000">
+          </div>
+
+          <!-- Grid row -->
+          <div class="row justify-content-center">
+
+            <!-- Grid column -->
+            <div class="col-md-6 text-left">
+              <p class="dark-grey-text"><strong id="resellerEarnings">0$</strong></p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-6 text-right">
+              <p class="dark-grey-text"><strong id="clientPrice">319$</strong></p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+
+        </div>
+        <!-- /Filter by price -->
+
+        </div>
+      <!-- /Grid row -->
     </div>
-    <!--Grid column-->
+  </form>
   </div>
-  <!--Grid row-->
-</section>
-<!--Section: Products v.1-->
+  <!-- /.Sidebar -->
+
+  <!-- Content -->
+  <div class="col-lg-9">
+
+    <!-- Products Grid -->
+    <section class="section pt-4">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4" *ngFor="let listing of listings;">
+
+          <!--Card-->
+          <div class="card card-ecommerce">
+
+            <!--Card image-->
+            <div class="view overlay">
+              <img src="http://localhost:4000/{{listing.book_image_url}}" class="img-fluid" alt="">
+              <a>
+                <div class="mask rgba-white-slight waves-effect waves-light"></div>
+              </a>
+            </div>
+            <!--Card image-->
+
+            <!--Card content-->
+            <div class="card-body">
+              <!--Category & Title-->
+
+              <h5 class="card-title mb-1"><strong><a href="" class="dark-grey-text">{{listing.book_name}}</a></strong></h5><span class="badge badge-danger mb-2">bestseller</span>
+
+              <!--Card footer-->
+              <div class="card-footer pb-0">
+                <div class="row mb-0">
+                  <span class="float-left"><strong>{{listing.price}}</strong></span>
+                  <span class="float-right">
+
+                                        <a class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><i class="fa fa-shopping-cart ml-3"></i></a>
+                                        </span>
+                </div>
+              </div>
+
+            </div>
+            <!--Card content-->
+
+          </div>
+          <!--Card-->
+
+        </div>
+        <!--Grid column-->
+
+
+      </div>
+      <!--Grid row-->
+
+      <!--Grid row-->
+      <div class="row justify-content-center mb-4">
+
+        <!--Pagination -->
+        <nav class="mb-4">
+          <ul class="pagination pagination-circle pg-blue mb-0">
+
+            <!--First-->
+            <li class="page-item disabled clearfix d-none d-md-block"><a class="page-link waves-effect waves-effect">First</a></li>
+
+            <!--Arrow left-->
+            <li class="page-item disabled">
+              <a class="page-link waves-effect waves-effect" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+
+            <!--Numbers-->
+            <li class="page-item active"><a class="page-link waves-effect waves-effect">1</a></li>
+            <li class="page-item"><a class="page-link waves-effect waves-effect">2</a></li>
+            <li class="page-item"><a class="page-link waves-effect waves-effect">3</a></li>
+            <li class="page-item"><a class="page-link waves-effect waves-effect">4</a></li>
+            <li class="page-item"><a class="page-link waves-effect waves-effect">5</a></li>
+
+            <!--Arrow right-->
+            <li class="page-item">
+              <a class="page-link waves-effect waves-effect" aria-label="Next">
+                <span aria-hidden="true">»</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+
+            <!--First-->
+            <li class="page-item clearfix d-none d-md-block"><a class="page-link waves-effect waves-effect">Last</a></li>
+
+          </ul>
+        </nav>
+        <!--/Pagination -->
+
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- /.Products Grid -->
+
+  </div>
+  <!-- /.Content -->
+
 </div>
+</div>
+
+

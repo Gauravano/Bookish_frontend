@@ -37,4 +37,15 @@ export class ListingService {
   deleteWishlistItem(id) {
     return this.http.get(`api/listings/delete/${id}`);
   }
+
+  getFilteredList(data) {
+    return this.http.get('api/listings/filter', {
+      params: {
+        book_name: data.book_name,
+        author_name: data.author_name,
+        price: data.price,
+        condition: data.condition
+      }
+    });
+  }
 }
