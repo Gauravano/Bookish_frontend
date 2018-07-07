@@ -45,6 +45,7 @@ export class MessageComponent implements OnInit {
 
   organizeData(data) {
     const senderIds = [];
+    this.messageSets = [];
     for (let i = 0 ; i < data.length ; i++ ) {
       senderIds.push(data[i].senderId);
     }
