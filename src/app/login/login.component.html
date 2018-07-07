@@ -1,19 +1,12 @@
-<div class="container">
-<div class="row">
-  <div class="col"></div>
-  <div class="col">
+<div class=" card cont">
+  <div class="form sign-in">
+    <div class="row justify-content-center">
+      <div class="col"></div>
 
-<div class="card">
-
-  <div class="modal-header light-blue darken-3 white-text">
-    <h4 class="title text-center py-4">
-      <i class="fa fa-pencil"></i> Login</h4>
-  </div>
-
-  <!-- Card body -->
-  <div class="card-body">
-
-    <!-- Material form register -->
+      <div class="col-6" style="margin-top: 8%;">
+        <div class="divider-new" style="margin-bottom: 14%;">
+          <h3 class="h3-responsive font-weight-bold blue-text mx-3">LOG IN</h3>
+        </div>
     <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
 
       <!-- Material input email -->
@@ -37,13 +30,20 @@
         <button class="btn btn-cyan waves-light" [disabled]="loginForm.invalid" type="submit" mdbWavesEffect>Login</button>
       </div>
     </form>
-    <!-- Material form register -->
+      </div>
+    <div class="col-5"></div>
+    </div>
 
   </div>
-  <!-- Card body -->
-
-</div>
-<!-- Card -->
+  <div class="sub-cont">
+    <div class="img">
+      <div class="img__text m--up">
+        <h2>New here?</h2>
+        <p>Sign up and discover great amount of new opportunities!</p>
+      </div>
+      <div class="img__btn">
+        <span routerLink="/signup" style="cursor: pointer;" class="m--up">Sign Up</span>
+      </div>
     </div>
-  <div class="col"></div>
-</div></div>
+  </div>
+</div>

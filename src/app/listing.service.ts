@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Listing } from './Listing';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,10 @@ import { Listing } from './Listing';
 export class ListingService {
 
   list: Listing[];
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   getListings() {
+      this.toastr.success('Hello world!', 'Toastr fun!');
     return this.http.get('api/listings');
   }
 

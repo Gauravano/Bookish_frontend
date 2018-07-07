@@ -16,6 +16,8 @@ import { ListingComponent } from './listing/listing.component';
 import { NewListingComponent } from './new-listing/new-listing.component';
 import { MessageComponent } from './message/message.component';
 import {MessageService} from './message.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {MessageService} from './message.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [ListingService, Globals, MessageService],
   bootstrap: [AppComponent],
