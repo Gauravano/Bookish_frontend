@@ -1,32 +1,66 @@
 <header class="h-100">
-  <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark cyan scrolling-navbar intro-fixed-nav" [containerInside]="false">
+  <mdb-navbar *ngIf="current_user == null; else userNav;" SideClass="navbar fixed-top navbar-expand-lg navbar-dark cyan scrolling-navbar intro-fixed-nav" [containerInside]="false">
     <logo>
-      <a class="logo navbar-brand" href="#">
-        <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" class="d-inline-block align-top" alt="">
+      <a class="logo navbar-brand" href="/">
+        <img src="../assets/logo2.png" height="30" class="d-inline-block align-top" alt="">
+      </a>
+    </logo>
+    <links>
+      <ul class="navbar-nav" >
+        <span style="margin-right: 930px;">
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item" mdbWavesEffect>
+            <a class="nav-link" [routerLink]="['/dashboard']">Home <i class="fa fa-home"></i>
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </span>
+
+      <span style="display: inline-flex;">
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" [routerLink]="['/login']" (click)="logIn()">LogIn <i class="fa fa-sign-in"></i></a>
+        </li>
+        <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" [routerLink]="['/signup']" (click)="signUp()">SignUp <i class="fa fa-user-plus"></i></a>
+        </li>
+      </span>
+      </ul>
+    </links>
+
+  </mdb-navbar>
+  <ng-template #userNav>
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark cyan scrolling-navbar intro-fixed-nav" [containerInside]="false" role="navigation">
+    <logo>
+      <a class="logo navbar-brand" href="/">
+        <img src="../assets/logo2.png" style="height: 30px" class="d-inline-block align-top" alt="">
       </a>
     </logo>
     <links>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active" mdbWavesEffect>
-          <a class="nav-link" [routerLink]="['/']">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link" (click)="newListing()">Add new Listing</a>
-        </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link" (click)="logIn()">LogIn</a>
-        </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link" (click)="signUp()">SignUp</a>
-        </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link" (click)="logOut()">Logout</a>
-        </li>
+        <span style="margin-right: 640px; display: inline-flex;">
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item inline"  mdbWavesEffect>
+            <a class="nav-link" [routerLink]="['/']"> Home <i class="fa fa-home"></i>
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link" [routerLink]="['/listings/add']" (click)="newListing()">Add new Listing <i class="fa fa-plus-circle"></i></a>
+          </li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link" [routerLink]="['/messages']">Messages <i class="fa fa-comments"></i></a>
+          </li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link" [routerLink]="['/wishlist']">Wishlist <i class="fa fa-heart"></i></a>
+          </li>
+        </span>
+        <span>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link" (click)="logOut()">Logout <i class="fa fa-sign-out"></i></a>
+          </li>
+        </span>
       </ul>
     </links>
-  </mdb-navbar>
+</mdb-navbar>
+</ng-template>
 </header>
 
 <br><br><br>

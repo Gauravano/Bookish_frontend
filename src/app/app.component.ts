@@ -13,13 +13,15 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-
+  current_user = localStorage.getItem('userObject');
   constructor(private http: HttpClient, private globals: Globals, private router: Router, private auth: AuthenticationService,
               private toastr: ToastrService) { }
 
   ngOnInit() {
+
     const retrievedObject = localStorage.getItem('userObject');
     console.log('retrievedObject: ', JSON.parse(retrievedObject));
+    this.current_user = retrievedObject;
   }
 
   logOut() {
@@ -63,5 +65,6 @@ export class AppComponent implements OnInit {
   newListing() {
     this.router.navigate(['/listings/add']);
   }
+
 }
 
