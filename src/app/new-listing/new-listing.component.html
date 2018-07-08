@@ -1,32 +1,98 @@
 <div class="container">
-  <h1>create new Listing</h1>
-  <form #newListingForm="ngForm" (ngSubmit)="createListing(newListingForm.value)">
-    <div class="form-group">
-      <label for="book_name">Book Name</label>
-      <input name="book_name" type="text" class="form-control" id="book_name" required ngModel>
-    </div>
+  <!--<h1>create new Listing</h1>-->
+  <!--<form #newListingForm="ngForm" (ngSubmit)="createListing(newListingForm.value)">-->
+    <!--<div class="form-group">-->
+      <!--<label for="book_name">Book Name</label>-->
+      <!--<input name="book_name" type="text" class="form-control" id="book_name" required ngModel>-->
+    <!--</div>-->
 
-    <div class="form-group">
-      <label for="author_name">Author Name</label>
-      <input name="author_name" type="text" class="form-control" id="author_name" required ngModel>
-    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="author_name">Author Name</label>-->
+      <!--<input name="author_name" type="text" class="form-control" id="author_name" required ngModel>-->
+    <!--</div>-->
 
-    <div class="form-group">
-      <label for="price">Price</label>
-      <input name="price" type="text" class="form-control" id="price" required ngModel>
-    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="price">Price</label>-->
+      <!--<input name="price" type="text" class="form-control" id="price" required ngModel>-->
+    <!--</div>-->
 
-    <div class="form-group">
-      <label for="condition">Condition</label>
-      <input name="condition" type="text" class="form-control" id="condition" required ngModel>
-    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="condition">Condition</label>-->
+      <!--<input name="condition" type="text" class="form-control" id="condition" required ngModel>-->
+    <!--</div>-->
 
-    <div class="form-group">
-      <label for="image">Image</label>
-      <input name="image" type="file" (change)="onFileSelected($event)" class="form-control" id="image" required ngModel>
-    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="image">Image</label>-->
+      <!--<input name="image" type="file" (change)="onFileSelected($event)" class="form-control" id="image" required ngModel>-->
+    <!--</div>-->
 
-    <button type="submit" class="btn btn-success">Submit</button>
+    <!--<button type="submit" class="btn btn-success">Submit</button>-->
 
-  </form>
+  <!--</form>-->
+<!--</div>-->
+
+<form  #newListingForm="ngForm" (ngSubmit)="createListing(newListingForm.value)">
+  <div class="md-form">
+    <i class="fa fa-book prefix"></i>
+    <input type="text" id="materialFormCardNameEx" data-error="Please enter valid name!" formControlName="book_name" class="form-control" mdbInputDirective>
+    <label for="materialFormCardNameEx" class="font-weight-light">Book Name</label>
+  </div>
+
+  <br>
+
+  <div class="md-form">
+    <i class="fa fa-user prefix"></i>
+    <input type="email" id="materialFormCardUserEx" data-error="Please enter valid author name!" formControlName="author_name" class="form-control" mdbInputDirective>
+    <label for="materialFormCardUserEx" class="font-weight-light">Author Name</label>
+  </div>
+
+  <br>
+
+  <div class="md-form">
+    <i class="fa fa-money prefix"></i>
+    <input type="text" id="materialFormCardPriceEx" data-error="Please enter valid amount!" formControlName="price" class="form-control"
+           mdbInputDirective>
+    <label for="materialFormCardPriceEx" class="font-weight-light">Price</label>
+  </div>
+
+  <br>
+
+  <div class="md-form">
+    <i class="fa fa-graduation-cap prefix"></i>
+    <input type="text" id="materialFormCardCollegeEx" formControlName="college" class="form-control"
+           mdbInputDirective>
+    <label for="materialFormCardCollegeEx" class="font-weight-light">Condition</label>
+  </div>
+  <br>
+  <div class="md-form">
+    <i class="fa fa-map-marker prefix"></i>
+    <input type="text" id="materialFormCardAddressEx" formControlName="address" class="form-control"
+           mdbInputDirective>
+    <label for="materialFormCardAddressEx" class="font-weight-light">Your address</label>
+  </div>
+  <br>
+  <div class="md-form">
+    <i class="fa fa-lock prefix"></i>
+    <input type="password" id="materialFormCardPasswordEx" data-error="Password is required!" formControlName="password" class="form-control"
+           mdbInputDirective>
+    <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
+  </div>
+
+  <!--<div class="md-form">-->
+  <!--<i class="fa fa-exclamation-triangle prefix grey-text"></i>-->
+  <!--<input type="password" id="materialFormCardConfirmEx" formControlName="confirmPassword" class="form-control" mdbInputDirective>-->
+  <!--<label for="materialFormCardConfirmEx" class="font-weight-light">Confirm your password</label>-->
+  <!--</div>-->
+
+  <div class="text-center py-4 mt-3">
+    <button class="btn btn-cyan waves-light" [disabled]="signupForm.invalid" type="submit" mdbWavesEffect>Sign up</button>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col-md-6">
+    <mdb-select [options]="colorSelect" placeholder="Choose your option" class="colorful-select dropdown-primary"></mdb-select>
+    <label>Blue select</label>
+  </div>
+</div>
 </div>

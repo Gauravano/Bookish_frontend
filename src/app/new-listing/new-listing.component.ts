@@ -12,8 +12,13 @@ export class NewListingComponent implements OnInit {
 
   selectedFile: File = null;
   constructor(private listingService: ListingService, private router: Router, private http: HttpClient) { }
-
+  optionsSelect: Array<any>;
   ngOnInit() {
+    this.optionsSelect = [
+      { value: '1', label: 'Option 1' },
+      { value: '2', label: 'Option 2' },
+      { value: '3', label: 'Option 3' },
+    ];
   }
 
   createListing(data) {
