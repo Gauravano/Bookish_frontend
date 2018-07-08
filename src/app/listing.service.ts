@@ -14,7 +14,6 @@ export class ListingService {
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   getListings() {
-      this.toastr.success('Hello world!', 'Toastr fun!');
     return this.http.get('api/listings');
   }
 

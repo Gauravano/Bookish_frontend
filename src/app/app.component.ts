@@ -4,6 +4,7 @@ import {Globals} from './globals';
 import { User } from './user';
 import {Router} from '@angular/router';
 import { AuthenticationService } from './authentication.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { AuthenticationService } from './authentication.service';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor(private http: HttpClient, private globals: Globals, private router: Router, private auth: AuthenticationService) { }
+  constructor(private http: HttpClient, private globals: Globals, private router: Router, private auth: AuthenticationService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     const retrievedObject = localStorage.getItem('userObject');
@@ -24,6 +26,7 @@ export class AppComponent implements OnInit {
     this.http.post('/api/users/logout', {}).subscribe((message) => {
       console.log('After logout: ', message);
       localStorage.removeItem('userObject');
+      this.toastr.success('Successfully logged out');
       this.router.navigate(['/dashboard']);
 
     }, (err) => {

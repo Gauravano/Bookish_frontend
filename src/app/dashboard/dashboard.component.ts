@@ -15,16 +15,16 @@ import { SimpleChanges } from '@angular/core';
 export class DashboardComponent implements OnInit, OnChanges {
   listings: Listing[] = [];
   filterForm: FormGroup;
-
+  current_user = localStorage.getItem('userObject');
 
   constructor(private listingService: ListingService,
               private router: Router,
               private wishlistService: WishlistService,  private fb: FormBuilder) {
       this.filterForm = fb.group({
-        price: ['', ],
-        author_name: ['', ],
-        book_name: ['', ],
-        condition: ['', ]
+        price: [''],
+        author_name: [''],
+        book_name: [''],
+        condition: ['']
       });
 
     this.filterForm.valueChanges.subscribe(data => {

@@ -1,0 +1,4 @@
+#prodCardImage:hover{
+  transition: transform .2s;
+  transform: scale(2.0);
+}
