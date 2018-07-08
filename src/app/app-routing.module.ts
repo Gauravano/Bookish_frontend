@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: 'listings/add', component: NewListingComponent },
   { path: 'listings/:id', component: ListingComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'messages', component: MessageComponent }
+  { path: 'messages', component: MessageComponent },
+  {path: '**', redirectTo: '/dashboard'}
 
 ];
 

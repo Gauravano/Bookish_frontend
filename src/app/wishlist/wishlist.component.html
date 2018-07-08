@@ -36,7 +36,7 @@
       <!--First row-->
       <tr *ngFor="let listing of wishlist;">
         <th scope="row">
-          <img style="width: 180px; height:150px; " src="https://bookish-v1.herokuapp.com/{{listing.book_image_url}}" alt="" class="img-fluid">
+          <img style="width: 180px; height:150px; " src="{{listing.book_image_url}}" alt="" class="img-fluid">
         </th>
         <td>
           <h5><strong>{{listing.book_name}}</strong></h5>
