@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ListingService } from '../listing.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Globals} from '../globals';
 
 @Component({
   selector: 'app-new-listing',
@@ -9,16 +11,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./new-listing.component.css']
 })
 export class NewListingComponent implements OnInit {
+  conditions = ['New', 'Almost new', 'Slightly worn', 'Worn'];
+  newListingForm: FormGroup;
 
   selectedFile: File = null;
-  constructor(private listingService: ListingService, private router: Router, private http: HttpClient) { }
-  optionsSelect: Array<any>;
+  constructor(private listingService: ListingService, private router: Router, private http: HttpClient, private fb: FormBuilder) {
+    this.newListingForm = fb.group({
+      book_name: ['', Validators.required],
+      author_name: ['', Validators.required],
+      condition: ['', Validators.required],
+      price: ['', Validators.required],
+      image: ['', Validators.required]
+    });
+  }
+
   ngOnInit() {
-    this.optionsSelect = [
-      { value: '1', label: 'Option 1' },
-      { value: '2', label: 'Option 2' },
-      { value: '3', label: 'Option 3' },
-    ];
   }
 
   createListing(data) {
@@ -44,4 +51,3 @@ export class NewListingComponent implements OnInit {
   }
 
 }
-
