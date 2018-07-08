@@ -22,6 +22,7 @@ import {MatSelectModule} from '@angular/material';
 import {MatSliderModule} from '@angular/material/slider';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDividerModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSelectModule,
     MatSliderModule,
     NoopAnimationsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDividerModule
   ],
   providers: [ListingService, Globals, MessageService],
   bootstrap: [AppComponent],
