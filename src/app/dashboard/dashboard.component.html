@@ -54,11 +54,11 @@
         <!-- Filter by price  -->
         <div class="col-md-6 col-lg-12 mb-5">
           <h5 class="font-weight-bold dark-grey-text"><strong>Price</strong></h5>
-          <div class="divider-new" style="color: dodgerblue;">
-          </div>
 
           <div class="range-field mt-3">
-            <input mdbInputDirective formControlName="price" id="calculatorSlider" class="no-border" type="range" value="0" min="0" max="10000">
+            <!--<input mdbInputDirective formControlName="price" id="calculatorSlider" class="no-border" type="range" value="0" min="0" max="10000">-->
+            <mat-slider style="width: 200px;" formControlName="price"
+              thumbLabel min="1" max="10000"></mat-slider>
           </div>
 
           <!-- Grid row -->

@@ -19,7 +19,7 @@ import {MessageService} from './message.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material';
-import {MatSliderModule} from '@angular/material';
+import {MatSliderModule} from '@angular/material/slider';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
 
