@@ -8,6 +8,7 @@ import {WishlistService} from '../wishlist.service';
 import {MessageService} from '../message.service';
 import * as $ from 'jquery';
 import { Message } from '../message';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-listing',
@@ -20,20 +21,30 @@ export class ListingComponent implements OnInit {
   showMessage  = false;
   conversation: Message[];
   current_user = localStorage.getItem('userObject');
+  wishlist;
 
   constructor(private route: ActivatedRoute,
               private location: Location,
               private listingService: ListingService,
               private wishlistService: WishlistService,
               private messageService: MessageService,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private toastr: ToastrService) {
 
   }
 
   ngOnInit() {
     this.getListing();
     this.getMessages();
+    this.getWishlist();
+  }
 
+  getWishlist() {
+    this.wishlistService.getWishlist().subscribe((data: Listing[]) => {
+      this.wishlist = data;
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   getListing() {
@@ -44,6 +55,29 @@ export class ListingComponent implements OnInit {
       console.log(err);
     });
   }
+
+  changeWishlist(id, event) {
+
+    this.wishlistService.getWishlist().subscribe((data: Listing[]) => {
+      this.wishlist = data;
+    }, (err) => {
+      console.log(err);
+    });
+
+    console.log('event', event.path[1]);
+    console.log('status check', this.checkInWishlist(id));
+
+    if (this.checkInWishlist(id) === true) {
+      this.removeFromWishlist(id);
+      $('#heartCount')[0].children[0].innerText = this.wishlist.length - 1;
+    } else {
+      this.addWishlist(id);
+      this.toastr.success('Item added to the wishlist');
+      $('#heartCount')[0].children[0].innerText = this.wishlist.length + 1;
+    }
+
+  }
+
 
   addWishlist(id) {
     this.wishlistService.addWishlistItem(id).subscribe((data) => {
@@ -71,6 +105,7 @@ export class ListingComponent implements OnInit {
     console.log('Inside', data);
     this.messageService.sendMessage(data.message, this.listing.id).subscribe((message) => {
       console.log(message);
+      this.toastr.success('Message Sent');
 
       $('#point').prepend(`<div class='row'><div style='width: 400px; border-radius: 25px;
  border-top-left-radius: 0px; background-color: lightgoldenrodyellow;
@@ -79,6 +114,28 @@ export class ListingComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
+  }
 
+
+  checkInWishlist(id) {
+
+    for (let i of this.wishlist) {
+      if (i.id === id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  removeFromWishlist(id) {
+    this.wishlistService.deleteWishlistItem(id).subscribe((item) => {
+      console.log('removed', item);
+      this.toastr.success('Listing removed from your wishlist');
+      // $('#heartCount')[0].children[0].innerText = this.wishlist.length - 1;
+      this.getWishlist();
+    }, (err) => {
+      console.log(err);
+      this.toastr.error(err.error.message);
+    });
   }
 }

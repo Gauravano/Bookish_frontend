@@ -3,6 +3,7 @@ import { WishlistService } from '../wishlist.service';
 import {Listing} from '../Listing';
 import {ListingService} from '../listing.service';
 import {ToastrService} from 'ngx-toastr';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-wishlist',
@@ -29,6 +30,7 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.deleteWishlistItem(id).subscribe((item) => {
       console.log(item);
       event.path[2].remove();
+      $('#heartCount')[0].children[0].innerText = this.wishlist.length - 1;
       this.toastr.success('Book removed from wishlist');
     }, (err) => {
       console.log(err);

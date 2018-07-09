@@ -5,6 +5,8 @@ import { User } from './user';
 import {Router} from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 import {ToastrService} from 'ngx-toastr';
+import {WishlistService} from './wishlist.service';
+import {Listing} from './Listing';
 
 @Component({
   selector: 'app-root',
@@ -13,16 +15,21 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class AppComponent implements OnInit {
   title = 'app';
+  wishlist_count;
   current_user = localStorage.getItem('userObject');
   constructor(private http: HttpClient, private globals: Globals, private router: Router, private auth: AuthenticationService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService, private wishlistService: WishlistService) { }
 
   ngOnInit() {
     console.log('App compo called');
     const retrievedObject = localStorage.getItem('userObject');
     console.log('retrievedObject: ', JSON.parse(retrievedObject));
     this.current_user = retrievedObject;
+    this.wishlistService.getWishlist().subscribe((data: Listing[]) => {
+      this.wishlist_count = data.length;
+    });
   }
+
 
   logOut() {
     this.http.post('/api/users/logout', {}).subscribe((message) => {

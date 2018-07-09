@@ -49,7 +49,7 @@
             <a class="nav-link" [routerLink]="['/messages']">Messages <i class="fa fa-comments"></i></a>
           </li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item waves-light" mdbWavesEffect>
-            <a class="nav-link" [routerLink]="['/wishlist']">Wishlist <i class="fa fa-heart"></i></a>
+            <a class="nav-link" [routerLink]="['/wishlist']">Wishlist  <i style="font-size:18px;" class="fa fa-heart"></i>&nbsp;<span id="heartCount" matBadge="{{wishlist_count}}" matBadgeColor="warn"></span></a>
           </li>
         </span>
         <span>

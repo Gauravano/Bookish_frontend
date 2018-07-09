@@ -84,18 +84,21 @@ export class DashboardComponent implements OnInit {
     if (this.checkInWishlist(id) === true) {
       this.removeFromWishlist(id);
       event.path[1].title = 'Add to wishlist';
-      event.path[0].style.color = 'none';
+      event.path[0].style.color = '#212529';
+      $('#heartCount')[0].children[0].innerText = this.wishlist.length - 1;
     } else {
       this.wishlistService.addWishlistItem(id).subscribe((data) => {
         console.log('wishList item', data);
         event.path[1].title = 'Already in wishlist';
         event.path[0].style.color = 'red';
         this.toastr.success('Item added to the wishlist');
+        $('#heartCount')[0].children[0].innerText = this.wishlist.length + 1;
       }, (err) => {
         console.log(err);
         this.toastr.error(err.error.message);
       });
     }
+
   }
 
   checkInWishlist(id) {
