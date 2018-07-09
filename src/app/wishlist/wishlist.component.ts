@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WishlistService } from '../wishlist.service';
 import {Listing} from '../Listing';
 import {ListingService} from '../listing.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-wishlist',
@@ -11,7 +12,9 @@ import {ListingService} from '../listing.service';
 export class WishlistComponent implements OnInit {
 
   wishlist: Listing[] = [];
-  constructor(private wishlistService: WishlistService, private listingService: ListingService) { }
+  constructor(private wishlistService: WishlistService,
+              private listingService: ListingService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.wishlistService.getWishlist().subscribe((listings: Listing[]) => {
@@ -22,11 +25,14 @@ export class WishlistComponent implements OnInit {
     });
   }
 
-  deleteWishlistItem(id) {
+  deleteWishlistItem(id, event) {
     this.wishlistService.deleteWishlistItem(id).subscribe((item) => {
       console.log(item);
+      event.path[2].remove();
+      this.toastr.success('Book removed from wishlist');
     }, (err) => {
       console.log(err);
+      this.toastr.warning(err.error.message);
     });
   }
 
