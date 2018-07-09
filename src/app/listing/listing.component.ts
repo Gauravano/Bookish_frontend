@@ -119,7 +119,7 @@ export class ListingComponent implements OnInit {
  padding: 10px; margin-bottom: 10px;'>${data.message}</div></div>`);
 
       $('#message').val('');
-      
+
     }, (err) => {
       console.log(err);
     });

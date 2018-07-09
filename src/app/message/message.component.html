@@ -5,7 +5,7 @@
         <h3 class="h3-responsive font-weight-bold blue-text mx-3">YOUR LISTINGS</h3>
       </div>
       <div class="row">
-          <div class="card single-news mb-4 message-listing" style="padding: 10px; height: 120px; cursor: pointer;" (click)="getMessages(item.id)" mdbTooltip="Click listing to view the messages!" placement="right" mdbWavesEffect *ngFor="let item of myListItems;">
+          <div class="card single-news mb-4 message-listing" style="padding: 10px; height: 120px; width: 500px; cursor: pointer;" (click)="getMessages(item.id)" mdbTooltip="Click listing to view the messages!" placement="right" mdbWavesEffect *ngFor="let item of myListItems;">
 
             <div class="row">
 
@@ -37,7 +37,7 @@
           </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6 col-sm-12">
 
       <section class="">
 
@@ -54,7 +54,7 @@
               <mat-divider></mat-divider>
               <div class="card-data">
                 <ul class="pl-0 list-unstyled">
-                  <li class="comment-date"><i class="fa fa-clock-o"></i>{{message.messages[0].createdAt.toLocaleString()}}</li>
+                  <li class="comment-date"><i class="fa fa-clock-o"></i>{{formattingDate(message.messages[0].createdAt)}}</li>
                 </ul>
               </div>
               <div class="comment-text">

@@ -81,6 +81,11 @@ export class MessageComponent implements OnInit {
 
   }
 
+  formattingDate(date) {
+    const p = new Date(date).toUTCString();
+    return p;
+  }
+
 }
 
 
