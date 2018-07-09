@@ -24,7 +24,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material';
 import { MatBadgeModule, MatIconModule} from '@angular/material';
-
+import { MatProgressBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { MatBadgeModule, MatIconModule} from '@angular/material';
     MatRadioModule,
     MatDividerModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatProgressBarModule
   ],
   providers: [ListingService, Globals, MessageService],
   bootstrap: [AppComponent],

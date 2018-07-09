@@ -2,7 +2,7 @@
   background-color: #f8bbd0 !important;
 }
 .view {
-  height: 100vh !important;
+  height: 140vh !important;
 }
 .navbar:not(.top-nav-collapse) {
   background: transparent !important;
@@ -17,7 +17,7 @@
   .full-height body,
   .full-height header,
   .full-height header .view {
-    height: 700px;
+    height: 900px;
   }
 }
 

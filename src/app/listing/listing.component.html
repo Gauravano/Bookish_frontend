@@ -74,11 +74,11 @@
     <div class="divider-new">
       <h3 class="h3-responsive font-weight-bold blue-text mx-3">Your recent messages with {{listing.user_name}} <small>(Seller)</small></h3>
     </div>
-
+<div id="messageSet">
     <div class="row" *ngFor="let message of conversation;" id="messages">
       <div style="width: 400px; border-radius: 25px; border-top-left-radius: 0px; background-color: lightgoldenrodyellow; padding: 10px; margin-bottom: 10px" >{{message.content}}</div>
     </div>
-
+</div>
   </div>
 
   <div id="point" *ngIf="current_user; else no_user;">
@@ -88,11 +88,6 @@
         <br>
 
         <div class="row">
-          <!--&lt;!&ndash;Image column&ndash;&gt;-->
-          <!--<div class="col-sm-2 col-12">-->
-          <!--<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" class="avatar rounded-circle z-depth-1-half">-->
-          <!--</div>-->
-          <!--&lt;!&ndash;/.Image column&ndash;&gt;-->
 
           <div class="col-sm-10 col-12">
             <div class="md-form">
@@ -123,5 +118,3 @@
   </ng-template>
 
 </div>
-
-

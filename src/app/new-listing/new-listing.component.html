@@ -1,6 +1,6 @@
 <header>
   <!-- Intro Section -->
-  <div class="view  jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('https://mdbootstrap.com/img/Photos/Others/gradient2.png');">
+  <div class="view  jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('../../assets/new_list_back.png');">
     <div class="full-bg-img mask rgba-purple-slight">
       <div class="container flex-center">
 
@@ -27,7 +27,7 @@
                          mdbInputDirective>
                   <label for="materialFormCardPriceEx" class="font-weight-light">Price</label>
                 </div>
-
+                <br>
                 <div class="md-form">
                   <mat-select placeholder="Select Condition" formControlName="condition" class="form-control" mdbInputDirective>
                     <mat-option *ngFor="let condition of conditions" [value]="condition">
@@ -36,7 +36,11 @@
                   </mat-select>
                 </div>
                 <div class="md-form">
-                  <input type="file" id="materialFormCardImageEx"  (change)="onFileSelected($event)"  id="image" formControlName="image" class="form-control">
+                  <input style="display: none;" type="file" id="materialFormCardImageEx"  (change)="onFileSelected($event)"  id="image" formControlName="image" class="form-control" #fileInput>
+                  <span style="display: flex; justify-content: space-between;" >
+                    <button style="width:200px; height: 50px;" class="btn btn-cyan waves-light" type="button" (click)="fileInput.click()"><i class="fa fa-image"></i> Pick Image File</button><span><img id="imagePreview"  style="height: 150px; width: 200px;" src="../../assets/preview_box.png"><figcaption>Image Preview</figcaption></span>
+                  </span>
+
                 </div>
 
                 <div class="text-center py-4 mt-3">

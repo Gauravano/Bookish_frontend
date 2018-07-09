@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Globals} from '../globals';
 import {ToastrService} from 'ngx-toastr';
+import * as $ from 'jquery';
+import {current} from 'codelyzer/util/syntaxKind';
 
 @Component({
   selector: 'app-new-listing',
@@ -14,7 +16,7 @@ import {ToastrService} from 'ngx-toastr';
 export class NewListingComponent implements OnInit {
   conditions = ['New', 'Almost new', 'Slightly worn', 'Worn'];
   newListingForm: FormGroup;
-
+  current_user;
   selectedFile: File = null;
   constructor(private listingService: ListingService, private router: Router,
               private http: HttpClient,
@@ -30,6 +32,7 @@ export class NewListingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.current_user = localStorage.getItem('userObject');
   }
 
   createListing(data) {
@@ -53,7 +56,18 @@ export class NewListingComponent implements OnInit {
   }
 
   onFileSelected(event) {
+    console.log(event);
     this.selectedFile = <File>event.target.files[0];
+
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        $('#imagePreview')
+          .attr('src', e.target.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
 }

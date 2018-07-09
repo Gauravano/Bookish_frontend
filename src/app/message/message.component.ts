@@ -26,7 +26,11 @@ export class MessageComponent implements OnInit {
 
   ngOnInit() {
     this.getUserSpecificListings();
-    this.toastr.info( 'Please click on the listing to see messages related to it. Thanks!');
+    this.toastr.info( 'Please click on the listing to see messages related to it. Thanks!', ' ' , {
+      disableTimeOut: true,
+      closeButton: true,
+      positionClass: 'toast-bottom-right'
+    });
   }
 
   getMessages(id) {

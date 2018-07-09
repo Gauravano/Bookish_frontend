@@ -34,6 +34,7 @@ export class ListingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.current_user = localStorage.getItem('userObject');
     this.getListing();
     this.getMessages();
     this.getWishlist();
@@ -103,14 +104,22 @@ export class ListingComponent implements OnInit {
 
   sendMessage(data) {
     console.log('Inside', data);
+
+    if (this.checkOwner() === true) {
+      this.toastr.warning('You can\'t message yourself');
+      return false;
+    }
+
     this.messageService.sendMessage(data.message, this.listing.id).subscribe((message) => {
       console.log(message);
       this.toastr.success('Message Sent');
 
-      $('#point').prepend(`<div class='row'><div style='width: 400px; border-radius: 25px;
+      $('#messageSet').append(`<div class='row'><div style='width: 400px; border-radius: 25px;
  border-top-left-radius: 0px; background-color: lightgoldenrodyellow;
  padding: 10px; margin-bottom: 10px;'>${data.message}</div></div>`);
 
+      $('#message').val('');
+      
     }, (err) => {
       console.log(err);
     });
@@ -137,5 +146,14 @@ export class ListingComponent implements OnInit {
       console.log(err);
       this.toastr.error(err.error.message);
     });
+  }
+
+  checkOwner() {
+    console.log('result', this.current_user != null && (JSON.parse(this.current_user).name === this.listing.user_name));
+    if (this.current_user != null && (JSON.parse(this.current_user).id === this.listing.userId)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
