@@ -21,4 +21,11 @@ export class WishlistService {
       bookId: id
     });
   }
+
+
+  deleteWishlistItem(id) {
+    return this.http.post(`api/wishlist/delete`, {
+      bookId: id
+    });
+  }
 }

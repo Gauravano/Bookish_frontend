@@ -4,6 +4,7 @@ import {Globals} from '../globals';
 import { User } from '../user';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private http: HttpClient, private globals: Globals, private router: Router, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private globals: Globals, private router: Router,
+              private fb: FormBuilder,
+              private toastr: ToastrService) {
     this.loginForm = fb.group({
       email: ['', [Validators.email, Validators.required]],
       password: ['', Validators.required]
@@ -37,8 +40,13 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('userObject', JSON.stringify(userObj));
 
       this.router.navigate(['/dashboard']);
+      this.toastr.success( `Hope you find your desired book :) `, `Welcome ${user.name} !`, {
+        timeOut: 30000
+      });
 
+      window.location.reload ();
     }, (err) => {
       console.log(err.error);
+      this.toastr.warning('Please enter valid Email ID and Password.' , 'Invalid Credentials!');
     });
   }}

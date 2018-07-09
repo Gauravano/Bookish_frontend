@@ -23,7 +23,7 @@ export class WishlistComponent implements OnInit {
   }
 
   deleteWishlistItem(id) {
-    this.listingService.deleteWishlistItem(id).subscribe((item) => {
+    this.wishlistService.deleteWishlistItem(id).subscribe((item) => {
       console.log(item);
     }, (err) => {
       console.log(err);

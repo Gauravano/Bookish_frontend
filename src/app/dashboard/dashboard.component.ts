@@ -6,20 +6,23 @@ import { WishlistService } from '../wishlist.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
 import { SimpleChanges } from '@angular/core';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, OnChanges {
+export class DashboardComponent implements OnInit {
   listings: Listing[] = [];
   filterForm: FormGroup;
   current_user = localStorage.getItem('userObject');
+  wishlist: Listing[] = [];
 
   constructor(private listingService: ListingService,
               private router: Router,
-              private wishlistService: WishlistService,  private fb: FormBuilder) {
+              private wishlistService: WishlistService,  private fb: FormBuilder,
+              private toastr: ToastrService) {
       this.filterForm = fb.group({
         price: [''],
         author_name: [''],
@@ -38,13 +41,18 @@ export class DashboardComponent implements OnInit, OnChanges {
       this.listings =  listings;
     });
 
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes.filterForm);
+    this.current_user = localStorage.getItem('userObject');
+    if (this.current_user != null) {
+      this.wishlistService.getWishlist().subscribe((data: Listing[]) => {
+        this.wishlist = data;
+      }, (err) => {
+        console.log(err);
+      });
+    }
   }
 
   submitFilterForm(data) {
+    console.log('daaa', data);
     if (data.condition === 'All') {
       data.condition = '';
     }
@@ -62,14 +70,53 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.router.navigate([`/listings/${id}`]);
   }
 
-  addWishlist(id) {
-    this.wishlistService.addWishlistItem(id).subscribe((data) => {
-      console.log('wishList item', data);
+  changeWishlist(id, event) {
+
+    this.wishlistService.getWishlist().subscribe((data: Listing[]) => {
+      this.wishlist = data;
     }, (err) => {
-        console.log(err);
+      console.log(err);
     });
+
+    console.log('event', event.path[1]);
+    console.log('status check', this.checkInWishlist(id));
+
+    if (this.checkInWishlist(id) === true) {
+      this.removeFromWishlist(id);
+      event.path[1].title = 'Add to wishlist';
+      event.path[0].style.color = 'none';
+    } else {
+      this.wishlistService.addWishlistItem(id).subscribe((data) => {
+        console.log('wishList item', data);
+        event.path[1].title = 'Already in wishlist';
+        event.path[0].style.color = 'red';
+        this.toastr.success('Item added to the wishlist');
+      }, (err) => {
+        console.log(err);
+        this.toastr.error(err.error.message);
+      });
+    }
   }
 
+  checkInWishlist(id) {
+
+    for (let i of this.wishlist) {
+      if (i.id === id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  removeFromWishlist(id) {
+    this.wishlistService.deleteWishlistItem(id).subscribe((item) => {
+      console.log('removed', item);
+      this.toastr.success('Listing removed from your wishlist');
+    }, (err) => {
+      console.log(err);
+      this.toastr.error(err.error.message);
+    });
+  }
 
 }
 

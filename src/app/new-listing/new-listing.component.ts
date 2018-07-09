@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Globals} from '../globals';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-listing',
@@ -15,7 +16,10 @@ export class NewListingComponent implements OnInit {
   newListingForm: FormGroup;
 
   selectedFile: File = null;
-  constructor(private listingService: ListingService, private router: Router, private http: HttpClient, private fb: FormBuilder) {
+  constructor(private listingService: ListingService, private router: Router,
+              private http: HttpClient,
+              private fb: FormBuilder,
+              private toastr: ToastrService) {
     this.newListingForm = fb.group({
       book_name: ['', Validators.required],
       author_name: ['', Validators.required],
@@ -39,8 +43,10 @@ export class NewListingComponent implements OnInit {
     this.http.post('api/listings/add', fd).subscribe((res) => {
       console.log('res', res);
       this.router.navigate(['/dashboard']);
+      this.toastr.success('Listing created and has been added on the dashboard');
     }, (err) => {
       console.log(err);
+      this.toastr.error(err.error.message);
     });
 
 

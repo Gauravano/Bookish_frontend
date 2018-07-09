@@ -43,7 +43,9 @@ export class SignupComponent implements OnInit {
        localStorage.setItem('userObject', JSON.stringify(userObj));
 
        this.router.navigate(['/dashboard']);
-
+       window.location.reload();
+       setTimeout(() => this.toastr.success(`Welcome to Bookish ${user.name} !`,
+         ' "Books are man\'s best friend", we believe in it and we will help you to find many such friends :) '), 1000);
        }, (err) => {
           console.log(err.message);
           this.toastr.error(err.message);

@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'listings/:id', component: ListingComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'messages', component: MessageComponent },
-  {path: '**', redirectTo: '/dashboard'}
+  {path: '**', redirectTo: '/' }
 
 ];
 
@@ -26,7 +26,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-
 
 export class AppRoutingModule {
 

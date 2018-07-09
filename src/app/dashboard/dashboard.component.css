@@ -2,3 +2,12 @@
   transition: transform .2s;
   transform: scale(2.0);
 }
+
+.fa-heart{
+  transition: transform .2s;
+  transform: scale(1.5);
+}
+
+.container{
+
+}

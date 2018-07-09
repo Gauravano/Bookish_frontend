@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit() {
-
+    console.log('App compo called');
     const retrievedObject = localStorage.getItem('userObject');
     console.log('retrievedObject: ', JSON.parse(retrievedObject));
     this.current_user = retrievedObject;
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
       localStorage.removeItem('userObject');
       this.toastr.success('Successfully logged out');
       this.router.navigate(['/dashboard']);
-
+      window.location.reload();
     }, (err) => {
       console.log(err.error);
     });
@@ -44,7 +44,8 @@ export class AppComponent implements OnInit {
         if (err.status === 200) {
           this.router.navigate(['/login']);
         } else {
-          console.log(err.error);
+          console.log(err);
+          this.toastr.warning(err.error.message);
         }
       });
   }
@@ -57,7 +58,8 @@ export class AppComponent implements OnInit {
         if (err.status === 200) {
           this.router.navigate(['/signup']);
         } else {
-          console.log(err.error);
+          console.log(err);
+          this.toastr.warning(err.error.message);
         }
       });
   }

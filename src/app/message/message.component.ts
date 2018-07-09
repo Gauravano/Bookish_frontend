@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 import {MessageSet} from '../message-set';
 import {AuthenticationService} from '../authentication.service';
 import {User} from '../user';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-message',
@@ -20,10 +21,12 @@ export class MessageComponent implements OnInit {
   constructor(private listingService: ListingService,
               private wishlistService: WishlistService,
               private messageService: MessageService,
-              private authService: AuthenticationService) { }
+              private authService: AuthenticationService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getUserSpecificListings();
+    this.toastr.info( 'Please click on the listing to see messages related to it. Thanks!');
   }
 
   getMessages(id) {
