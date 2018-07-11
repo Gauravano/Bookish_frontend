@@ -5,6 +5,7 @@ import { User } from '../user';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,8 @@ import {ToastrService} from 'ngx-toastr';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   constructor(private http: HttpClient, private globals: Globals, private router: Router, private fb: FormBuilder,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private auth: AuthenticationService) {
     this.signupForm = fb.group({
       name: [''],
       contact: [''],
@@ -50,5 +52,20 @@ export class SignupComponent implements OnInit {
           console.log(err.message);
           this.toastr.error(err.message);
      });
+  }
+
+
+  logIn() {
+    this.auth.getLogin().subscribe((data) => {
+        console.log('data', data);
+      },
+      (err) => {
+        if (err.status === 200) {
+          this.router.navigate(['/login']);
+        } else {
+          console.log(err);
+          this.toastr.warning(err.error.message);
+        }
+      });
   }
 }

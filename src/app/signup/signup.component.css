@@ -135,18 +135,12 @@ button {
   text-transform: uppercase;
   font-size: 15px;
   cursor: pointer;
-}
-.img__btn:after {
-  content: '';
-  z-index: 2;
-  position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
   border: 2px solid #fff;
   border-radius: 30px;
 }
+
 .img__btn span {
   position: absolute;
   left: 0;

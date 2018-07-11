@@ -5,6 +5,7 @@ import { User } from '../user';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   constructor(private http: HttpClient, private globals: Globals, private router: Router,
               private fb: FormBuilder,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private auth: AuthenticationService) {
     this.loginForm = fb.group({
       email: ['', [Validators.email, Validators.required]],
       password: ['', Validators.required]
@@ -49,4 +51,5 @@ export class LoginComponent implements OnInit {
       console.log(err.error);
       this.toastr.warning('Please enter valid Email ID and Password.' , 'Invalid Credentials!');
     });
-  }}
+  }
+}

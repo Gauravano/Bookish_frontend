@@ -57,6 +57,10 @@ export class DashboardComponent implements OnInit {
       data.condition = '';
     }
 
+    if (data.price === 1) {
+      data.price = 100000;
+    }
+
     this.listingService.getFilteredList(data).subscribe((items: Listing[]) => {
         console.log(items);
         this.listings = items;

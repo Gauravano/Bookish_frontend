@@ -54,12 +54,6 @@
             <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
           </div>
 
-          <!--<div class="md-form">-->
-            <!--<i class="fa fa-exclamation-triangle prefix grey-text"></i>-->
-            <!--<input type="password" id="materialFormCardConfirmEx" formControlName="confirmPassword" class="form-control" mdbInputDirective>-->
-            <!--<label for="materialFormCardConfirmEx" class="font-weight-light">Confirm your password</label>-->
-          <!--</div>-->
-
           <div class="text-center py-4 mt-3">
             <button class="btn btn-cyan waves-light" [disabled]="signupForm.invalid" type="submit" mdbWavesEffect>Sign up</button>
           </div>
@@ -76,7 +70,7 @@
         <p>  If you already has an account, just sign in. We've missed you!</p>
       </div>
       <div class="img__btn">
-        <span routerLink="/signin" style="cursor: pointer;" class="m--up">SIGN IN</span>
+        <a style="color: white" routerLink="/login"><span style="cursor: pointer;" class="m--up">SIGN IN</span></a>
       </div>
     </div>
   </div>
