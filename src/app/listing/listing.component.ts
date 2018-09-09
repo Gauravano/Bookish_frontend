@@ -93,8 +93,21 @@ export class ListingComponent implements OnInit {
 
     this.messageService.fetchMessages(this.id).subscribe((data: Message[]) => {
         console.log('conversation', data);
-        this.conversation = data;
-        if (this.conversation.length > 0) {
+
+        const arr: Message[] = [];
+
+      for (let i = 0 ; i < data.length ; i++ ) {
+        // console.log('datraa', data[i]);
+        if (data[i].senderId === JSON.parse(this.current_user).id) {
+          arr.push(data[i]);
+        }
+      }
+
+      this.conversation = arr;
+
+      console.log('Message to current user: ', this.conversation);
+
+      if (this.conversation.length > 0) {
           this.showMessage = true;
         }
       }, (err) => {
@@ -151,6 +164,7 @@ export class ListingComponent implements OnInit {
   checkOwner() {
     console.log('result', this.current_user != null && (JSON.parse(this.current_user).name === this.listing.user_name));
     if (this.current_user != null && (JSON.parse(this.current_user).id === this.listing.userId)) {
+      console.log('hereeee', this.current_user, this.listing.userId);
       return true;
     } else {
       return false;
