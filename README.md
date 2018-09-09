@@ -6,11 +6,11 @@ This repository i.e., Bookish Frontend is an Angular application which is used a
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ### Bookish Backend
-The code for the backend of the website is available at [https://github.com/gauravano/books_project](https://github.com/gauravano/books_project). 
+The code for the backend of the website is available at [https://github.com/gauravano/bookish_backend](https://github.com/gauravano/bookish_backend). 
 
 ## Installation
 
-1. In the console, download a copy of the repo by running `git clone https://github.com/gauravano/plots2.git`.
+1. In the console, download a copy of the repo by running `git clone https://github.com/gauravano/Bookish_frontend.git`.
 2. Enter the new Bookish_frontend directory with `cd Bookish_frontend`.
 3. Run `npm install` to install the required npm packages.
 4. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -41,7 +41,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Demo
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/GlPkRenDdwc/0.jpg)](https://www.youtube.com/watch?v=GlPkRenDdwc)
+[![Bookish Dashboard](https://github.com/gauravano/Bookish_frontend/blob/master/screenshots/bookish_dashboard.png)](https://www.youtube.com/watch?v=GlPkRenDdwc)
 
 The **Bookish** website is live at http://bookish-v1.herokuapp.com.
  
